@@ -45,16 +45,13 @@ describe('HttpResource', () => {
   it('should have a axios instance as client', async () => {
     const resource = new TestResource();
     const client = resource.getClient();
-    expect(client.get).toBeInstanceOf(Function);
-    expect(client.post).toBeInstanceOf(Function);
-    expect(client.put).toBeInstanceOf(Function);
-    expect(client.patch).toBeInstanceOf(Function);
-    expect(client.delete).toBeInstanceOf(Function);
-    expect(client.options).toBeInstanceOf(Function);
-    expect(client.head).toBeInstanceOf(Function);
-    expect(client.postForm).toBeInstanceOf(Function);
-    expect(client.putForm).toBeInstanceOf(Function);
-    expect(client.patchForm).toBeInstanceOf(Function);
+    expect(client.get).toBeDefined();
+    expect(client.post).toBeDefined();
+    expect(client.put).toBeDefined();
+    expect(client.patch).toBeDefined();
+    expect(client.delete).toBeDefined();
+    expect(client.options).toBeDefined();
+    expect(client.head).toBeDefined();
   });
 
   it('should merge the global request interceptors with the instance request interceptors', async () => {

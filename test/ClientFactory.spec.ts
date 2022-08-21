@@ -3,18 +3,19 @@ import { ClientFactory } from '../src';
 import { IRequestInterceptor, IResponseInterceptor } from '../src/types';
 
 describe('ClientFactory', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should create an axios instance', async () => {
     const client = ClientFactory.build();
-    expect(client.get).toBeInstanceOf(Function);
-    expect(client.post).toBeInstanceOf(Function);
-    expect(client.put).toBeInstanceOf(Function);
-    expect(client.patch).toBeInstanceOf(Function);
-    expect(client.delete).toBeInstanceOf(Function);
-    expect(client.options).toBeInstanceOf(Function);
-    expect(client.head).toBeInstanceOf(Function);
-    expect(client.postForm).toBeInstanceOf(Function);
-    expect(client.putForm).toBeInstanceOf(Function);
-    expect(client.patchForm).toBeInstanceOf(Function);
+    expect(client.get).toBeDefined();
+    expect(client.post).toBeDefined();
+    expect(client.put).toBeDefined();
+    expect(client.patch).toBeDefined();
+    expect(client.delete).toBeDefined();
+    expect(client.options).toBeDefined();
+    expect(client.head).toBeDefined();
   });
 
   it('should sanitize url removing double slahes', () => {
