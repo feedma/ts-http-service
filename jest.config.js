@@ -12,6 +12,7 @@ module.exports = {
     '!**/*.d.ts',
     '!**/.eslintrc.js',
     '!**/node_modules/**',
+    '!<rootDir>/**/*types.ts',
     '!<rootDir>/out/**',
     '!<rootDir>/lib/**',
     '!<rootDir>/*.config.js',
