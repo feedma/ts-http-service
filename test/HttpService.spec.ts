@@ -1,6 +1,6 @@
 import { IRequestInterceptor, IResponseInterceptor } from '../src/types';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { HttpResource } from '../src';
+import { HttpService } from '../src';
 
 describe('HttpResource', () => {
   const requestInterceptorFactory = (): IRequestInterceptor => {
@@ -18,7 +18,7 @@ describe('HttpResource', () => {
   const globalRequestInterceptor = requestInterceptorFactory();
   const globalResponseInterceptor = responseInterceptorFactory();
 
-  class TestResource extends HttpResource {
+  class TestResource extends HttpService {
     protected path = '/';
     protected config = config;
     protected globalRequestInterceptors: IRequestInterceptor[] = [globalRequestInterceptor];
@@ -39,7 +39,7 @@ describe('HttpResource', () => {
 
   it('should be an instance of HttpResource', async () => {
     const resource = new TestResource();
-    expect(resource).toBeInstanceOf(HttpResource);
+    expect(resource).toBeInstanceOf(HttpService);
   });
 
   it('should have a axios instance as client', async () => {
