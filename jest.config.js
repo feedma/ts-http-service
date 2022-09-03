@@ -17,6 +17,7 @@ module.exports = {
     '!<rootDir>/lib/**',
     '!<rootDir>/*.config.js',
     '!<rootDir>/coverage/**',
+    '!<rootDir>/docs/**',
   ],
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',
