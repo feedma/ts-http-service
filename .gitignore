@@ -17,6 +17,9 @@ yarn-error.log*
 .eslintcache
 
 # Generated output
+.temp
+.cache
+/docs/.vuepress/dist
 /dist
 /lib
 /build
