@@ -1,17 +1,17 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-export type ResourceResponse<R> = Promise<AxiosResponse<R>>;
+export type ServiceResponse<R> = Promise<AxiosResponse<R>>;
 export type IRequestInterceptor = (config: AxiosRequestConfig) => AxiosRequestConfig | Promise<AxiosRequestConfig>;
 export type IResponseInterceptor<R = AxiosResponse> = (response: R) => R | Promise<R>;
 
-export interface IRestResource<T, L = T[]> {
-  fetch(params?: Record<string, unknown>): ResourceResponse<L>;
+export interface IRestService<T, L = T[]> {
+  fetch(params?: Record<string, unknown>): ServiceResponse<L>;
 
-  createOne(data?: Record<string, unknown>): ResourceResponse<T>;
+  createOne(data?: Record<string, unknown>): ServiceResponse<T>;
 
-  fetchOne(id: string | number): ResourceResponse<T>;
+  fetchOne(id: string | number): ServiceResponse<T>;
 
-  updateOne(id: string | number, data?: Record<string, unknown>): ResourceResponse<T>;
+  updateOne(id: string | number, data?: Record<string, unknown>): ServiceResponse<T>;
 
-  deleteOne<R = void>(id: string | number): ResourceResponse<R>;
+  deleteOne<R = void>(id: string | number): ServiceResponse<R>;
 }

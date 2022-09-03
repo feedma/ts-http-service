@@ -2,7 +2,7 @@ import { IRequestInterceptor, IResponseInterceptor } from '../src/types';
 import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { HttpService } from '../src';
 
-describe('HttpResource', () => {
+describe('HttpService', () => {
   const requestInterceptorFactory = (): IRequestInterceptor => {
     return (e: AxiosRequestConfig): AxiosRequestConfig => e;
   };
@@ -18,7 +18,7 @@ describe('HttpResource', () => {
   const globalRequestInterceptor = requestInterceptorFactory();
   const globalResponseInterceptor = responseInterceptorFactory();
 
-  class TestResource extends HttpService {
+  class TestService extends HttpService {
     protected path = '/';
     protected config = config;
     protected globalRequestInterceptors: IRequestInterceptor[] = [globalRequestInterceptor];
@@ -37,14 +37,14 @@ describe('HttpResource', () => {
     }
   }
 
-  it('should be an instance of HttpResource', async () => {
-    const resource = new TestResource();
-    expect(resource).toBeInstanceOf(HttpService);
+  it('should be an instance of HttpService', async () => {
+    const service = new TestService();
+    expect(service).toBeInstanceOf(HttpService);
   });
 
   it('should have a axios instance as client', async () => {
-    const resource = new TestResource();
-    const client = resource.getClient();
+    const service = new TestService();
+    const client = service.getClient();
     expect(client.get).toBeDefined();
     expect(client.post).toBeDefined();
     expect(client.put).toBeDefined();
@@ -58,8 +58,8 @@ describe('HttpResource', () => {
     const requestInterceptor1 = requestInterceptorFactory();
     const requestInterceptor2 = requestInterceptorFactory();
     const requestInterceptors = [requestInterceptor1, requestInterceptor2];
-    const resource = new TestResource(requestInterceptors);
-    const interceptors = resource.getRequestInterceptors();
+    const service = new TestService(requestInterceptors);
+    const interceptors = service.getRequestInterceptors();
     expect(interceptors).toStrictEqual([globalRequestInterceptor, requestInterceptor1, requestInterceptor2]);
   });
 
@@ -67,8 +67,8 @@ describe('HttpResource', () => {
     const responseInterceptor1 = responseInterceptorFactory();
     const responseInterceptor2 = responseInterceptorFactory();
     const responseInterceptors = [responseInterceptor1, responseInterceptor2];
-    const resource = new TestResource([], responseInterceptors);
-    const interceptors = resource.getResponseInterceptors();
+    const service = new TestService([], responseInterceptors);
+    const interceptors = service.getResponseInterceptors();
     expect(interceptors).toStrictEqual([globalResponseInterceptor, responseInterceptor1, responseInterceptor2]);
   });
 });
