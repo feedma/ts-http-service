@@ -1,5 +1,6 @@
 {
   "name": "@feedma/http-service",
+  "private": false,
   "version": "0.0.0-development",
   "description": "A class based HTTP client built on top of axios",
   "main": "lib/index.js",
@@ -61,5 +62,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
