@@ -1,6 +1,6 @@
 {
   "name": "@feedma/http-service",
-  "version": "0.0.1",
+  "version": "0.0.0-development",
   "description": "A class based HTTP client built on top of axios",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -11,11 +11,12 @@
     "test": "NODE_ENV=test jest",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:cov": "NODE_ENV=test jest --coverage",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/feedma/ts-http-service.git"
+    "url": "https://github.com/feedma/ts-http-service.git"
   },
   "keywords": [
     "HTTPClient",
@@ -49,7 +50,8 @@
     "jest-mock-axios": "^4.6.1",
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.8",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "semantic-release": "^19.0.5"
   },
   "peerDependencies": {
     "axios": "^0.27.2"
