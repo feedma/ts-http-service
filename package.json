@@ -38,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/feedma/ts-http-service/issues"
   },
-  "homepage": "https://github.com/feedma/ts-http-service#readme",
+  "homepage": "https://feedma.github.io/ts-http-service",
   "devDependencies": {
     "@types/jest": "^28.1.7",
     "@typescript-eslint/eslint-plugin": "^5.33.1",

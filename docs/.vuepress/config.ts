@@ -33,9 +33,9 @@ export default defineUserConfig({
           // string - page file path
           '/guide/README.md',
           '/guide/getting-started.md',
+          '/guide/rest-services.md',
         ],
       },
     ],
-    home: '/guide/README.md',
   }),
 });
