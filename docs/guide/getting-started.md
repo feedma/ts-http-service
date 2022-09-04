@@ -24,7 +24,7 @@ great way to do it is to create the class `JsonPlaceHolderService`.
 ```ts
 // JsonPlaceHolderService.ts
 
-import { HttpService } from './HttpService';
+import { HttpService } from '@feedma/http-service';
 import { AxiosRequestConfig } from 'axios';
 
 export class JsonPlaceHolderService extends HttpService {
@@ -67,9 +67,9 @@ the client is an [AxiosInstance](https://axios-http.com/docs/instance), so you h
 ```ts
 // JsonPlaceHolderService.ts
 
-import { HttpService } from './HttpService';
+import { HttpService } from '@feedma/http-service';
 import { AxiosRequestConfig } from 'axios';
-import { endpoints } from '@configs/services';
+import { endpoints } from '../config/services';
 
 export class JsonPlaceHolderService extends HttpService {
   protected config: AxiosRequestConfig = endpoints.jsonplaceholder;
