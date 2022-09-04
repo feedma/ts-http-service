@@ -1,9 +1,9 @@
 import { defineUserConfig } from 'vuepress';
 import { defaultTheme } from 'vuepress';
 import { version, homepage } from './meta';
-import { getDirname, path } from '@vuepress/utils';
 
 export default defineUserConfig({
+  base: process.env.DOCS_PATH ? `/${process.env.DOCS_PATH}/` : '/',
   lang: 'en-US',
   title: 'HttpService',
   description: 'Just playing around',
@@ -36,10 +36,6 @@ export default defineUserConfig({
         ],
       },
     ],
+    home: '/guide/README.md',
   }),
-  markdown: {
-    importCode: {
-      handleImportPath: (str) => str.replace(/^@vuepress/, path.resolve(__dirname, '../../ecosystem')),
-    },
-  },
 });
