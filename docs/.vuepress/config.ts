@@ -1,6 +1,7 @@
 import { defineUserConfig } from 'vuepress';
 import { defaultTheme } from 'vuepress';
 import { version, homepage } from './meta';
+import { getDirname, path } from '@vuepress/utils';
 
 export default defineUserConfig({
   lang: 'en-US',
@@ -28,12 +29,17 @@ export default defineUserConfig({
       // SidebarItem
       {
         text: 'Guide',
-        link: '/guide',
         children: [
           // string - page file path
           '/guide/README.md',
+          '/guide/getting-started.md',
         ],
       },
     ],
   }),
+  markdown: {
+    importCode: {
+      handleImportPath: (str) => str.replace(/^@vuepress/, path.resolve(__dirname, '../../ecosystem')),
+    },
+  },
 });
