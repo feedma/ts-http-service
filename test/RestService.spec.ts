@@ -1,11 +1,11 @@
-import { IRestResource } from '../src/types';
-import { HttpResource, RestResource } from '../src';
+import { IRestService } from '../src/types';
+import { HttpService, RestService } from '../src';
 import mockAxios from 'jest-mock-axios';
 
-describe('RestResource', () => {
-  let restResource: IRestResource<unknown>;
+describe('RestService', () => {
+  let restService: IRestService<unknown>;
 
-  class TestRestResource extends RestResource<unknown> {
+  class TestRestService extends RestService<unknown> {
     protected config = {
       baseURL: 'https://jsonplaceholder.typicode.com',
     };
@@ -13,23 +13,23 @@ describe('RestResource', () => {
   }
 
   beforeEach(() => {
-    restResource = new TestRestResource();
+    restService = new TestRestService();
   });
 
   afterEach(() => {
     mockAxios.reset();
   });
 
-  it('should be an instance of HttpResource', () => {
-    expect(restResource).toBeInstanceOf(HttpResource);
+  it('should be an instance of HttpService', () => {
+    expect(restService).toBeInstanceOf(HttpService);
   });
 
   it('should implements the resource CRUD methods', () => {
-    expect(restResource.fetch).toBeDefined();
-    expect(restResource.createOne).toBeDefined();
-    expect(restResource.fetchOne).toBeDefined();
-    expect(restResource.updateOne).toBeDefined();
-    expect(restResource.deleteOne).toBeDefined();
+    expect(restService.fetch).toBeDefined();
+    expect(restService.createOne).toBeDefined();
+    expect(restService.fetchOne).toBeDefined();
+    expect(restService.updateOne).toBeDefined();
+    expect(restService.deleteOne).toBeDefined();
   });
 
   describe('fetch', () => {
@@ -40,7 +40,7 @@ describe('RestResource', () => {
         },
       ];
       mockAxios.get.mockResolvedValue({ data: response });
-      await restResource.fetch();
+      await restService.fetch();
 
       expect(mockAxios.get).toBeCalledTimes(1);
       expect(mockAxios.get).toBeCalledWith('/', { params: undefined });
@@ -54,7 +54,7 @@ describe('RestResource', () => {
       ];
       const params = { page: 1, pageSize: 15 };
       mockAxios.get.mockResolvedValue({ data: response });
-      await restResource.fetch(params);
+      await restService.fetch(params);
 
       expect(mockAxios.get).toBeCalledTimes(1);
       expect(mockAxios.get).toBeCalledWith('/', { params });
@@ -67,7 +67,7 @@ describe('RestResource', () => {
         name: 'John',
       };
       mockAxios.post.mockResolvedValue({ data: response });
-      await restResource.createOne();
+      await restService.createOne();
 
       expect(mockAxios.post).toBeCalledTimes(1);
       expect(mockAxios.post).toBeCalledWith('/', undefined);
@@ -81,7 +81,7 @@ describe('RestResource', () => {
       ];
       const data = { page: 1, pageSize: 15 };
       mockAxios.post.mockResolvedValue({ data: response });
-      await restResource.createOne(data);
+      await restService.createOne(data);
 
       expect(mockAxios.post).toBeCalledTimes(1);
       expect(mockAxios.post).toBeCalledWith('/', data);
@@ -94,7 +94,7 @@ describe('RestResource', () => {
         name: 'John',
       };
       mockAxios.get.mockResolvedValue({ data: response });
-      await restResource.fetchOne(1);
+      await restService.fetchOne(1);
 
       expect(mockAxios.get).toBeCalledTimes(1);
       expect(mockAxios.get).toBeCalledWith('/1');
@@ -112,7 +112,7 @@ describe('RestResource', () => {
         name: 'John',
       };
 
-      await restResource.updateOne(1, payload);
+      await restService.updateOne(1, payload);
 
       expect(mockAxios.patch).toBeCalledTimes(1);
       expect(mockAxios.patch).toBeCalledWith('/1', payload);
@@ -124,7 +124,7 @@ describe('RestResource', () => {
       const response = undefined;
       mockAxios.delete.mockResolvedValue({ data: response });
 
-      await restResource.deleteOne(1);
+      await restService.deleteOne(1);
 
       expect(mockAxios.delete).toBeCalledTimes(1);
       expect(mockAxios.delete).toBeCalledWith('/1');

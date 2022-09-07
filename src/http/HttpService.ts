@@ -2,7 +2,7 @@ import { IRequestInterceptor, IResponseInterceptor } from '../types';
 import { ClientFactory } from './ClientFactory';
 import { AxiosInstance, AxiosRequestConfig } from 'axios';
 
-export abstract class HttpResource {
+export abstract class HttpService {
   private _httpClient: AxiosInstance | null = null;
   protected abstract config: AxiosRequestConfig;
   protected abstract path: string;
