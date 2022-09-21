@@ -31,14 +31,16 @@ class UserService extends RestService<IUser> {
 :::
 ::: code-group-item Javascript
 ```js
-// UserService.ts
+// UserService.js
 
 import { RestService } from '@feedma/http-service';
 import { endpoints } from '../config/services';
 
-export class JsonPlaceHolderService extends RestService {
+export class UserService extends RestService {
   constructor(requestInterceptors = [], responseInterceptors = []) {
     super(requestInterceptors, responseInterceptors);
+    this.globalRequestInterceptors = []; // Set your global interceptor here
+    this.globalResponseInterceptors = []; // Set your global interceptor here
     this.config = endpoints.jsonplaceholder;
     this.path = '/users';
   }
