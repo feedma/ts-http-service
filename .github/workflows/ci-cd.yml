@@ -38,7 +38,7 @@ jobs:
       - name: Running tests with coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
-          test-script: npm test:cov
+          test-script: npm run test:cov
           skip-step: install
           annotations: failed-tests
           prnumber: ${{ steps.findPr.outputs.number }}
