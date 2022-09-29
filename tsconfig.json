@@ -2,10 +2,12 @@
   "extends": "./tsconfig.paths.json",
   "compilerOptions": {
     "target": "ES2016",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "esnext"],
     "module": "esnext",
+    "importHelpers": true,
     "declaration": true,
-    "outDir": "./lib",
+    "sourceMap": true,
+    "rootDir": "./src",
     "strict": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,7 +17,11 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "**/*.spec.ts"],
+  "include": ["src", "types"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }

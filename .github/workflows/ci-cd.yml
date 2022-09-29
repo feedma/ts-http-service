@@ -23,7 +23,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -38,6 +38,7 @@ jobs:
       - name: Running tests with coverage
         uses: ArtiomTr/jest-coverage-report-action@v2
         with:
+          test-script: npm run test:cov
           skip-step: install
           annotations: failed-tests
           prnumber: ${{ steps.findPr.outputs.number }}
