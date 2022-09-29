@@ -18,8 +18,11 @@ describe('HttpService', () => {
   const globalRequestInterceptor = requestInterceptorFactory();
   const globalResponseInterceptor = responseInterceptorFactory();
 
+  class TestBasicService extends HttpService {
+    protected config = config;
+  }
+
   class TestService extends HttpService {
-    protected path = '/';
     protected config = config;
     protected globalRequestInterceptors: IRequestInterceptor[] = [globalRequestInterceptor];
     protected globalResponseInterceptors: IResponseInterceptor[] = [globalResponseInterceptor];
@@ -36,6 +39,11 @@ describe('HttpService', () => {
       return this._responseInterceptors;
     }
   }
+
+  it('should be an instance of HttpService with the minimal config', async () => {
+    const service = new TestBasicService();
+    expect(service).toBeInstanceOf(HttpService);
+  });
 
   it('should be an instance of HttpService', async () => {
     const service = new TestService();

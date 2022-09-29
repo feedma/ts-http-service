@@ -39,8 +39,6 @@ import { endpoints } from '../config/services';
 export class UserService extends RestService {
   constructor(requestInterceptors = [], responseInterceptors = []) {
     super(requestInterceptors, responseInterceptors);
-    this.globalRequestInterceptors = []; // Set your global interceptor here
-    this.globalResponseInterceptors = []; // Set your global interceptor here
     this.config = endpoints.jsonplaceholder;
     this.path = '/users';
   }

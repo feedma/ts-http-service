@@ -5,9 +5,9 @@ import { AxiosInstance, AxiosRequestConfig } from 'axios';
 export abstract class HttpService {
   private _httpClient: AxiosInstance | null = null;
   protected abstract config: AxiosRequestConfig;
-  protected abstract path: string;
-  protected abstract globalRequestInterceptors: IRequestInterceptor[];
-  protected abstract globalResponseInterceptors: IResponseInterceptor[];
+  protected path = '';
+  protected globalRequestInterceptors: IRequestInterceptor[] = [];
+  protected globalResponseInterceptors: IResponseInterceptor[] = [];
 
   constructor(
     private requestInterceptors: IRequestInterceptor[] = [],

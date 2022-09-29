@@ -16,7 +16,8 @@ export class ClientFactory {
     requestInterceptors: IRequestInterceptor[] = [],
     responseInterceptors: IResponseInterceptor[] = [],
   ): AxiosInstance {
-    const baseURL = ClientFactory.sanitizeUrl(`${options.baseURL}/${basePath}`);
+    const segments = [options.baseURL, basePath].filter((segment) => ![undefined, null, '', '/'].includes(segment));
+    const baseURL = ClientFactory.sanitizeUrl(segments.join('/'));
     const axiosInstance = axios.create({ ...options, baseURL });
     ClientFactory.applyGlobalRequestInterceptors(axiosInstance, requestInterceptors);
     ClientFactory.applyGlobalResponseInterceptors(axiosInstance, responseInterceptors);
