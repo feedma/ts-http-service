@@ -1,53 +1,90 @@
-# HTTP Resource
-A class based HTTP client built on top of axios 
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![npm version](https://badge.fury.io/js/@feedma%2Fhttp-service.svg)](https://badge.fury.io/js/@feedma%2Fhttp-service)
 
 
-## Basic usage
+# Quickstart
 
-We provide a base class to extend if you are using `REST` services
+**Installation**
 
+See the full [documentation](https://feedma.github.io/ts-http-service)
 
-```ts
-import { RestService, ResourceResponse } from "@feedma/http-service";
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
-import config from '@config';
-
-interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
-class JsonPlaceholderPostService extends RestService<Post> {
-  protected config: AxiosRequestConfig = config.api;
-  protected path: string = '/posts'
-}
-
-const postService = new JsonPlaceholderPostService()
-
-// now you can use the service inside of any async funcioion
-// ResourceResponse<T> is an alias of Promise<AxiosResponse<T>>
-const sample = async () => {
-  // [GET] to fetch all data @returns 
-  const listResponse: ResourceResponse<Post[]> = await postService.fetch();
-
-  // [POST] to create a single record
-  const creationResponse: ResourceResponse<Post> = await postService.createOne({
-    //... your data here
-  });
-
-  // [GET] to get a single record by id
-  const fetchOneResponse: ResourceResponse<Post> = await postService.fetchOne(1);
-  
-  // [PATCH] to update a single record by id 
-  const updateOneResponse: ResourceResponse<Post> = await postService.updateOne(1, {
-    //... your data here
-  });
-  
-  // [DELETE] to remove a single record by id
-  const deletionResponse: ResourceResponse<void> = await postService.deleteOne(1);
-}
-
+NPM
+```shell
+npm i axios @feedma/http-service
 ```
 
+YARN
+```shell
+yarn add axios @feedma/http-service
+```
+
+**Create a service**
+
+Typescript
+```ts
+// JsonPlaceHolderService.ts
+
+import { HttpService } from '@feedma/http-service';
+import { AxiosRequestConfig } from 'axios';
+
+export class JsonPlaceHolderService extends HttpService {
+  protected config: AxiosRequestConfig = { 
+    baseURL: "https://jsonplaceholder.typicode.com" ,
+  };
+  
+  async fetchUsers(): Promise<AxiosResponse> {
+    return this.client.get('/users');
+  }
+  // Yor request methods here ...
+}
+```
+
+Javascript
+```js
+// JsonPlaceHolderService.js
+
+import { HttpService } from '@feedma/http-service';
+
+export class JsonPlaceHolderService extends HttpService {
+  
+  constructor(requestInterceptors = [], responseInterceptors = []) {
+    super(requestInterceptors, responseInterceptors);
+    this.config = {
+      baseURL: "https://jsonplaceholder.typicode.com",
+    };
+  }
+  
+  async fetchUsers() {
+    return this.client.get('/users');
+  }
+  // Yor request methods here ...
+}
+```
+
+**Make request**
+
+Typescript
+```ts
+// app.ts
+
+import { JsonPlaceHolderService } from './JsonPlaceHolderService';
+
+const service: JsonPlaceHolderService = new JsonPlaceHolderService();
+
+const app = async () => {
+  const { data } = await service.fetchUsers();
+};
+```
+
+Javascript
+```js
+// app.js
+
+import { JsonPlaceHolderService } from './JsonPlaceHolderService';
+
+const service = new JsonPlaceHolderService();
+
+const app = async () => {
+  const { data } = await service.fetchUsers();
+};
+```
