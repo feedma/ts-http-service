@@ -42,8 +42,8 @@ describe('RestService', () => {
       mockAxios.get.mockResolvedValue({ data: response });
       await restService.fetch();
 
-      expect(mockAxios.get).toBeCalledTimes(1);
-      expect(mockAxios.get).toBeCalledWith('/', { params: undefined });
+      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.get).toHaveBeenCalledWith('/', { params: undefined });
     });
 
     it('should call the axios get method when fetch is invoked with params', async () => {
@@ -56,8 +56,8 @@ describe('RestService', () => {
       mockAxios.get.mockResolvedValue({ data: response });
       await restService.fetch(params);
 
-      expect(mockAxios.get).toBeCalledTimes(1);
-      expect(mockAxios.get).toBeCalledWith('/', { params });
+      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.get).toHaveBeenCalledWith('/', { params });
     });
   });
 
@@ -69,8 +69,8 @@ describe('RestService', () => {
       mockAxios.post.mockResolvedValue({ data: response });
       await restService.createOne();
 
-      expect(mockAxios.post).toBeCalledTimes(1);
-      expect(mockAxios.post).toBeCalledWith('/', undefined);
+      expect(mockAxios.post).toHaveBeenCalledTimes(1);
+      expect(mockAxios.post).toHaveBeenCalledWith('/', undefined);
     });
 
     it('should call the axios post method when createOne is invoked with data', async () => {
@@ -83,8 +83,8 @@ describe('RestService', () => {
       mockAxios.post.mockResolvedValue({ data: response });
       await restService.createOne(data);
 
-      expect(mockAxios.post).toBeCalledTimes(1);
-      expect(mockAxios.post).toBeCalledWith('/', data);
+      expect(mockAxios.post).toHaveBeenCalledTimes(1);
+      expect(mockAxios.post).toHaveBeenCalledWith('/', data);
     });
   });
 
@@ -96,8 +96,8 @@ describe('RestService', () => {
       mockAxios.get.mockResolvedValue({ data: response });
       await restService.fetchOne(1);
 
-      expect(mockAxios.get).toBeCalledTimes(1);
-      expect(mockAxios.get).toBeCalledWith('/1');
+      expect(mockAxios.get).toHaveBeenCalledTimes(1);
+      expect(mockAxios.get).toHaveBeenCalledWith('/1');
     });
   });
 
@@ -114,8 +114,8 @@ describe('RestService', () => {
 
       await restService.updateOne(1, payload);
 
-      expect(mockAxios.patch).toBeCalledTimes(1);
-      expect(mockAxios.patch).toBeCalledWith('/1', payload);
+      expect(mockAxios.patch).toHaveBeenCalledTimes(1);
+      expect(mockAxios.patch).toHaveBeenCalledWith('/1', payload);
     });
   });
 
@@ -126,8 +126,8 @@ describe('RestService', () => {
 
       await restService.deleteOne(1);
 
-      expect(mockAxios.delete).toBeCalledTimes(1);
-      expect(mockAxios.delete).toBeCalledWith('/1');
+      expect(mockAxios.delete).toHaveBeenCalledTimes(1);
+      expect(mockAxios.delete).toHaveBeenCalledWith('/1');
     });
   });
 });

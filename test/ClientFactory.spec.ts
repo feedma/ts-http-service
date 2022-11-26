@@ -30,8 +30,8 @@ describe('ClientFactory', () => {
     jest.spyOn(client.interceptors.request, 'use');
 
     ClientFactory.applyGlobalRequestInterceptor(client, interceptor);
-    expect(client.interceptors.request.use).toBeCalledTimes(1);
-    expect(client.interceptors.request.use).toBeCalledWith(interceptor);
+    expect(client.interceptors.request.use).toHaveBeenCalledTimes(1);
+    expect(client.interceptors.request.use).toHaveBeenCalledWith(interceptor);
   });
 
   it('should add a single response interceptor', () => {
@@ -40,8 +40,8 @@ describe('ClientFactory', () => {
     jest.spyOn(client.interceptors.response, 'use');
 
     ClientFactory.applyGlobalResponseInterceptor(client, interceptor);
-    expect(client.interceptors.response.use).toBeCalledTimes(1);
-    expect(client.interceptors.response.use).toBeCalledWith(interceptor);
+    expect(client.interceptors.response.use).toHaveBeenCalledTimes(1);
+    expect(client.interceptors.response.use).toHaveBeenCalledWith(interceptor);
   });
 
   it('should add multiple request interceptor', () => {
@@ -51,9 +51,9 @@ describe('ClientFactory', () => {
     jest.spyOn(client.interceptors.request, 'use');
 
     ClientFactory.applyGlobalRequestInterceptors(client, [interceptor, interceptor2]);
-    expect(client.interceptors.request.use).toBeCalledTimes(2);
-    expect(client.interceptors.request.use).toBeCalledWith(interceptor);
-    expect(client.interceptors.request.use).toBeCalledWith(interceptor2);
+    expect(client.interceptors.request.use).toHaveBeenCalledTimes(2);
+    expect(client.interceptors.request.use).toHaveBeenCalledWith(interceptor);
+    expect(client.interceptors.request.use).toHaveBeenCalledWith(interceptor2);
   });
 
   it('should add multiple response interceptor', () => {
@@ -63,9 +63,9 @@ describe('ClientFactory', () => {
     jest.spyOn(client.interceptors.response, 'use');
 
     ClientFactory.applyGlobalResponseInterceptors(client, [interceptor, interceptor2]);
-    expect(client.interceptors.response.use).toBeCalledTimes(2);
-    expect(client.interceptors.response.use).toBeCalledWith(interceptor);
-    expect(client.interceptors.response.use).toBeCalledWith(interceptor2);
+    expect(client.interceptors.response.use).toHaveBeenCalledTimes(2);
+    expect(client.interceptors.response.use).toHaveBeenCalledWith(interceptor);
+    expect(client.interceptors.response.use).toHaveBeenCalledWith(interceptor2);
     expect(client.interceptors.response).toBeTruthy();
   });
 });
